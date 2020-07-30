@@ -12,9 +12,9 @@
             <span> 
               {{i + 1}}: {{todo.text}}
             </span>
-            <button class="delete-button" @click="deleteToDo(i)"> 
+            <md-button class="delete-button" @click="deleteToDo(i)"> 
               X
-              </button>
+              </md-button>
           </li>
         </ul>
     </div>
@@ -22,6 +22,16 @@
 </template>
 
 <script>
+// Importing Vue Material modules
+import Vue from 'vue'
+import { MdButton, MdContent, MdTabs } from 'vue-material/dist/components'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
+
+Vue.use(MdButton)
+Vue.use(MdContent)
+Vue.use(MdTabs)
+
 export default {
   name: 'app',
   data () {
