@@ -1,42 +1,54 @@
 <template>
   <div id="app">
     <div class="container">
-        <h1> VuetoDue </h1>
+      <div class="banner">
+        <h1> Vue toDue </h1>
+      </div>
         <md-field id="add-field" md-clearable>
-      <label>Add new To-Do</label>
-      <md-input v-model="newToDo" placeholder="Walk the dog..."></md-input>
-        <md-button class="add-button" v-on:click="add()">Add</md-button>
-         </md-field>
-        <!-- <ul style="list-styke-type: none;"> -->
+          <label>Add new To-Do</label>
+          <md-input v-model="newToDo" placeholder="Walk the dog..."></md-input>
+          <md-button class="add-button" v-on:click="add()">Add</md-button>
+        </md-field>
           <div class="listArea">
+            <div class="UncompletedArea">
           <md-card md-with-hover v-for="(todo, i) in existingToDo"> 
             <md-ripple>
-            <!-- <span> 
+            <span> 
               {{i + 1}}:
-            </span> -->
+            </span>
             <md-card-title> 
               {{todo.text}}
               </md-card-title>
-            <md-button class="delete-button md-raised" :md-ripple="false" @cmd-cardck="deleteToDo(i)"> 
-              X
+            <md-button class="delete-button md-raised" :md-ripple="false" @click="deleteToDo(i)"> 
+              DELETE
+              </md-button>
+              <md-button class="complete-button md-raised" :md-ripple="false" @click="completeToDo(i)"> 
+              COMPLETE
               </md-button>
               </md-ripple>
           </md-card>
           </div>
-        <!-- </ul> -->
+          <div class="completedArea">
+           <md-card md-with-hover v-for="(todo, i) in existingToDo"> 
+            <md-ripple>
+            <span> 
+              {{i + 1}}:
+            </span>
+            <md-card-title> 
+              {{todo.text}}
+              </md-card-title>
+            <md-button class="delete-button md-raised" :md-ripple="false" @click="deleteToDo(i)"> 
+              DELETE
+              </md-button>
+              </md-ripple>
+          </md-card>
+           </div>
+          </div>
     </div>
   </div>
 </template>
 
 <script>
-// Importing Vue Material modules
-// import Vue from 'vue'
-// import { MdButton, MdForms } from 'vue-material/dist/components'
-// import 'vue-material/dist/vue-material.min.css'
-// import 'vue-material/dist/theme/default.css'
-
-// Vue.use(MdButton)
-// Vue.use(MdForms)
 
 import Vue from 'vue'
 import VueMaterial from 'vue-material'
@@ -50,9 +62,9 @@ export default {
     return {
       newToDo: '',
       existingToDo: [
-        {text: 'get groceries', id:0},
-        {text: 'run errrands', id:1},
-        {text: 'walking dog', id:2}
+        {text: 'get groceries', id:0, completed: false},
+        {text: 'run errrands', id:1, completed: false},
+        {text: 'walking dog', id:2, completed: true}
       ]
     }
   },
@@ -66,6 +78,9 @@ export default {
     },
     deleteToDo(i){
       this.existingToDo.splice(i,1)
+    },
+    completeToDo(i){
+      this.existingToDo[i].completed = !this.existingToDo[i].completed;
     }
   }
 }
@@ -90,27 +105,13 @@ export default {
 .container > * {
   margin: 20px;
 }
-li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border: 4px solid var(--secondary-bg-color); */
-  margin: 10px;
-  padding: 5px;
-}
-
-/* ul {
-  background-color: var(--tertiary-bg-color);
-  padding-top: 25px;
-  padding-bottom: 25px;
-} */
 
 body{
   background-color: var(--primary-bg-color);
 }
 
-.delete-button{
- background-color: var(--tertiary-bg-color);
+.delete-button, .complete-button{
+ background-color: var(--primary-bg-color);
 }
 
 #add-field{
@@ -143,4 +144,22 @@ body{
   align-items: center;
   flex-direction: column;
 }
+
+.banner{
+    height: 15vh;
+    background-color:var(--tertiary-bg-color);
+    width: 100%;
+    margin: 0;
+    top:0px;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    font-size: 5rem;
+    color: var(--secondary-bg-color);
+}
+
 </style>
