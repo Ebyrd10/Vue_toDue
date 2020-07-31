@@ -11,7 +11,7 @@
         </md-field>
           <div class="listArea">
             <div class="UncompletedArea">
-          <md-card md-with-hover v-for="(todo, i) in existingToDo"> 
+          <md-card md-with-hover v-for="(todo, i) in uncompletedToDo"> 
             <md-ripple>
             <span> 
               {{i + 1}}:
@@ -28,8 +28,9 @@
               </md-ripple>
           </md-card>
           </div>
+          <div class="divider"></div>
           <div class="completedArea">
-           <md-card md-with-hover v-for="(todo, i) in existingToDo"> 
+           <md-card md-with-hover v-for="(todo, i) in completedToDo"> 
             <md-ripple>
             <span> 
               {{i + 1}}:
@@ -66,6 +67,14 @@ export default {
         {text: 'run errrands', id:1, isCompleted: false},
         {text: 'walking dog', id:2, isCompleted: true}
       ]
+    }
+  },
+  computed: {
+    uncompletedToDo() {
+      return this.existingToDo.filter (el => el.isCompleted== false)
+    }, 
+    completedToDo() {
+      return this.existingToDo.filter (el => el.isCompleted== true)
     }
   },
   methods:{
@@ -146,11 +155,11 @@ body{
 }
 
 .banner{
-    height: 15vh;
+    /* height: 15vh; */
     background-color:var(--tertiary-bg-color);
     width: 100%;
-    margin: 0;
-    padding: 20px;
+    /* margin: 0;
+    padding: 20px; */
     display: flex;
     justify-content: bottom;
     align-items: bottom;
@@ -173,4 +182,12 @@ h1{
   color: var(--primary-bg-color);
 }
 
+.divider{
+  display: block;
+  width: 450px;
+  height: 7px;
+  margin: 2rem;
+  border-radius: 20px;
+  background-color: var(--secondary-bg-color)
+}
 </style>
