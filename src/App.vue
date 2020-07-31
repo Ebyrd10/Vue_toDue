@@ -62,9 +62,9 @@ export default {
     return {
       newToDo: '',
       existingToDo: [
-        {text: 'get groceries', id:0, completed: false},
-        {text: 'run errrands', id:1, completed: false},
-        {text: 'walking dog', id:2, completed: true}
+        {text: 'get groceries', id:0, isCompleted: false},
+        {text: 'run errrands', id:1, isCompleted: false},
+        {text: 'walking dog', id:2, isCompleted: true}
       ]
     }
   },
@@ -80,7 +80,7 @@ export default {
       this.existingToDo.splice(i,1)
     },
     completeToDo(i){
-      this.existingToDo[i].completed = !this.existingToDo[i].completed;
+      this.existingToDo[i].isCompleted = !this.existingToDo[i].isCompleted;
     }
   }
 }
@@ -150,16 +150,27 @@ body{
     background-color:var(--tertiary-bg-color);
     width: 100%;
     margin: 0;
-    top:0px;
-    position: fixed;
+    padding: 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: bottom;
+    align-items: bottom;
 }
 
 h1{
     font-size: 5rem;
     color: var(--secondary-bg-color);
+}
+
+#add-field > input{
+  background-color: var(--tertiary-bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1rem;
+}
+
+#add-field > input::placeholder{
+  color: var(--primary-bg-color);
 }
 
 </style>
