@@ -5,7 +5,7 @@
         <h1> Vue toDue </h1>
       </div>
         <md-field id="add-field" md-clearable>
-          <label>Add new To-Do</label>
+          <label id="addLabel">New Activity</label>
           <md-input v-model="newToDo" placeholder="Walk the dog..."></md-input>
           <md-button class="add-button" v-on:click="add()">Add</md-button>
         </md-field>
@@ -158,11 +158,13 @@ body{
     /* height: 15vh; */
     background-color:var(--tertiary-bg-color);
     width: 100%;
-    /* margin: 0;
-    padding: 20px; */
+    margin: 0px;
+    padding: 20px;
     display: flex;
     justify-content: bottom;
-    align-items: bottom;
+    align-items: center;
+    top: 0px;
+    position: fixed;
 }
 
 h1{
@@ -189,5 +191,11 @@ h1{
   margin: 2rem;
   border-radius: 20px;
   background-color: var(--secondary-bg-color)
+}
+
+#addLabel{
+  color: var(--secondary-bg-color);
+  font-size: 0.75rem;
+  
 }
 </style>
